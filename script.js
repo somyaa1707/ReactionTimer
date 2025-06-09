@@ -32,9 +32,17 @@ function startGame() {
 
 box.onclick = function () {
   endTime = Date.now();
-  let reactionTime = (endTime - startTime) / 1000;
-  alert(reactionTime)
-  startGame(); // Restart automatically
+  let reactionTime = ((endTime - startTime) / 1000).toFixed(3);
+
+  // Change box color immediately
+  box.style.backgroundColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+  // Wait briefly to allow the browser to repaint the color before showing the alert
+  setTimeout(() => {
+    alert(`Your reaction time is ${reactionTime} seconds`);
+    startGame();
+  }, 100); // 100ms delay is enough
 };
+
 
 startGame();
